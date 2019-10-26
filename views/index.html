@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>List device</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <script src="local/socket.io.js"></script>
+    <script src="local/angular.min.js"></script>
+    <script src="local/socket.js"></script>
+    <script src="local/jquery.3.2.1.min.js"></script>
+    <script src="local/bootstrap.min.js"></script>
+    <script src="javascripts/client_index.js"></script>
+    <link rel="stylesheet" href="local/bootstrap.min.css"/>
+  </head>
+
+  <body ng-controller="MainCtrl">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+        <h1 class="text-center">List Device</h1>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th class="col-md-1">No.</th>
+              <th class="col-md-3">Username</th>
+              <th class="col-md-3">Name</th>
+              <th class="col-md-3">Address</th>
+              <th class="col-md-2 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="device in devices">
+              <td class="col-md-1">{{ device.room }}</td>
+              <td class="col-md-3">{{ device.username }}</td>
+              <td class="col-md-3">{{ device.name }}</td>
+              <td class="col-md-3">{{ device.address }}</td>
+              <td class="col-md-2 text-center">
+                <form action="/data" method="POST">
+                  <input name="room" value="{{ device.room }}" style="display: none">
+                  <input name="username" value="{{ device.username }}" style="display: none">
+                  <input name="name" value="{{ device.name }}" style="display: none">
+                  <input name="address" value="{{ device.address }}" style="display: none">
+                  <input type="submit" value="View" style="width: 100%">
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+
+</html>
